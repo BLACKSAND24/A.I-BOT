@@ -1,0 +1,11 @@
+flask
+ccxt
+pandas
+numpy
+scikit-learn
+xgboost
+git+https://github.com/twopirllc/pandas-ta.git
+python-dotenv
+gunicorn
+requests
+matplotlib

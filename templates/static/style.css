@@ -1,0 +1,46 @@
+body {
+    background: #0b0f13;
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.error-box {
+    background: #ff4444;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.price-box, .signal-box, .order-box {
+    background: #11161c;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+button {
+    background: #0e79ff;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    margin: 10px;
+}
+button:hover { opacity: .8 }
+
+.buy-btn { background: #33cc33 }
+.sell-btn { background: #ff5050 }

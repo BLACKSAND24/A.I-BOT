@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Binance Bot Dashboard (Demo)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Trading Bot Dashboard (Demo)</h1>
+  <div>
+    <label>Symbol:</label>
+    <input id="symbol" value="BTC/USDT" />
+    <button id="refresh">Refresh</button>
+    <button id="buy">Paper Buy</button>
+    <button id="sell">Paper Sell</button>
+  </div>
+  <div>
+    <canvas id="priceChart" width="800" height="300"></canvas>
+  </div>
+  <div id="status"></div>
+
+<script>
+async function fetchPrice(){
+  const sym = document.getElementById('symbol').value;
+  const r = await fetch('/api/price?symbol=' + encodeURIComponent(sym));
+  return r.json();
+}
+async function fetchSignal(){
+  const sym = document.getElementById('symbol').value;
+  const r = await fetch('/api/signal?symbol=' + encodeURIComponent(sym));
+  return r.json();
+}
+async function place(side){
+  const sym = document.getElementById('symbol').value;
+  const res = await fetch('/api/order', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({symbol: sym, side: side, size: 0.001, mode:'paper'})
+  });
+  return res.json();
+}
+
+document.getElementById('refresh').onclick = async ()=>{
+  const p = await fetchPrice();
+  const s = await fetchSignal();
+  document.getElementById('status').innerText = JSON.stringify({price:p.last, signal:s.signal, pred:s.prediction});
+};
+
+document.getElementById('buy').onclick = async ()=> {
+  const r = await place('buy');
+  alert(JSON.stringify(r));
+};
+document.getElementById('sell').onclick = async ()=> {
+  const r = await place('sell');
+  alert(JSON.stringify(r));
+};
+</script>
+</body>
+</html>
