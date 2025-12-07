@@ -14,7 +14,7 @@ flask==2.2.5
 python-dotenv==1.0.0
 gunicorn==20.1.0
 requests==2.31.0
-pandas==2.1.2
+pandas>=2.2.0  # Updated from ==2.1.2
 numpy==1.26.4
 plotly==5.18.0
 dash==2.10.2
